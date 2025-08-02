@@ -31,6 +31,7 @@ export default [
       'no-unused-vars': 'warn',
       'no-console': 'warn',
       'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+      'import/extensions': 'ignorePackages',
     },
   },
 ];
