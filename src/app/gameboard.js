@@ -1,16 +1,12 @@
 export default class gameboard {
   static gameboardArr = Array(100).fill('.');
 
-  static get() {
-    return this.gameboardArr; // Return a copy for safety
-  }
-
   static set(newBoard) {
     this.gameboardArr = [...newBoard]; // Store a copy
   }
 
   static place(ship, coordinates) {
-    const board = this.get();
+    const board = this.gameboardArr;
 
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < ship.length; i++) {

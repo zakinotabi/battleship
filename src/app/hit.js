@@ -2,7 +2,7 @@ import shipsArray from './ships.js';
 import gameboard from './gameboard.js';
 
 export default function hit(coordinates) {
-  const board = gameboard.get();
+  const board = gameboard.gameboardArr;
   const shipId = board[coordinates];
   // eslint-disable-next-line no-plusplus
   for (let i = 0; i < shipsArray.length; i++) {
