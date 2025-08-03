@@ -1,7 +1,3 @@
-import gameboard from './gameboard.js';
-
-export default function miss(coordinates) {
-  const board = gameboard.gameboardArr;
+export default function miss(coordinates, board) {
   board[coordinates] = 'miss';
-  gameboard.set(board);
 }

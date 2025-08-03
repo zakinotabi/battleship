@@ -1,7 +1,22 @@
-import attack from './app/attack.js';
-import gameboard from './app/gameboard.js';
-import shipsArray from './app/ships.js';
+import Player1 from './app/player1.js';
+import Player2 from './app/player2.js';
+import Comp from './app/comp.js';
 
-gameboard.place(shipsArray[1], 1);
-attack(1);
-gameboard.display();
+let play = new Player1('adam');
+let play2 = new Player2('teo');
+let compr = new Comp();
+
+// play.op = play2;
+// play2.op = play;
+compr.op = play;
+
+// play.attack(15);
+// play2.attack(55);
+compr.place();
+compr.attack();
+compr.attack();
+
+console.log(compr.gameboard);
+console.log(play.gameboard);
+// console.log(play.op);
+// console.log(play2.gameboard[55]);

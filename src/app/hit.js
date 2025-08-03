@@ -1,19 +1,14 @@
-import shipsArray from './ships.js';
-import gameboard from './gameboard.js';
-
-export default function hit(coordinates) {
-  const board = gameboard.gameboardArr;
+export default function hit(coordinates, board, ships) {
   const shipId = board[coordinates];
   // eslint-disable-next-line no-plusplus
-  for (let i = 0; i < shipsArray.length; i++) {
-    if (shipsArray[i].id === shipId) {
-      shipsArray[i].hit += 1;
-      if (shipsArray[i].hit === shipsArray[i].length) {
-        shipsArray[i].sunk = true;
+  for (let i = 0; i < ships.length; i++) {
+    if (ships[i].id === shipId) {
+      ships[i].hit += 1;
+      if (ships[i].hit === ships[i].length) {
+        ships[i].sunk = true;
       }
       break;
     }
   }
   board[coordinates] = 'hit';
-  gameboard.set(board);
 }
