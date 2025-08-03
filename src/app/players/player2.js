@@ -1,4 +1,4 @@
-import attack from './attack.js';
+import attack from '../attack.js';
 
 export default class Player2 {
   constructor(name) {

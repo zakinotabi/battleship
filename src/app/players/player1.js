@@ -1,9 +1,9 @@
-import attack from './attack.js';
-import Player1 from './player1.js';
-import place from './place.js';
-export default class Comp {
-  constructor() {
-    this.name = 'player1';
+import attack from '../attack.js';
+import place from '../place.js';
+
+export default class Player1 {
+  constructor(name) {
+    this.name = name || 'player1';
     this.gameboard = Array(100).fill('.');
     this.op;
     this.ships = [
@@ -14,15 +14,11 @@ export default class Comp {
     ];
   }
 
-  place() {
-    for (let i = 0; i < this.ships.length; i++) {
-      let coord = Math.floor(Math.random() * 101);
-      place(this.ships[i], coord, this.gameboard);
-    }
+  place(shipId, coord) {
+    return place(this.ships[shipId], coord, this.gameboard);
   }
 
-  attack() {
-    let coord = Math.floor(Math.random() * 101);
+  attack(coord) {
     return attack(coord, this.op);
   }
 }

@@ -1,6 +1,6 @@
-import Player1 from './app/player1.js';
-import Player2 from './app/player2.js';
-import Comp from './app/comp.js';
+import Player1 from './app/players/player1.js';
+import Player2 from './app/players/player2.js';
+import Comp from './app/players/comp.js';
 
 let play = new Player1('adam');
 let play2 = new Player2('teo');
