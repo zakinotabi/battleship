@@ -1,4 +1,5 @@
 import attack from '../attack.js';
+import place from '../place.js';
 
 export default class Player2 {
   constructor(name) {

@@ -1,5 +1,6 @@
 import attack from '../attack.js';
 import place from '../place.js';
+
 export default class Comp {
   constructor() {
     this.name = 'player1';
@@ -16,7 +17,7 @@ export default class Comp {
   place() {
     for (let i = 0; i < this.ships.length; i++) {
       let coord = Math.floor(Math.random() * 101);
-      place(this.ships[i], coord, this.gameboard);
+      return place(this.ships[i], coord, this.gameboard);
     }
   }
 

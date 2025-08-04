@@ -53,3 +53,56 @@ h1 {
   box-shadow: 0 0 15px rgba(255, 107, 107, 0.7);
   z-index: 1;
 }
+
+.ship-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  width: fit-content;
+  max-width: 400px;
+  margin-top: 20px;
+}
+
+.ship {
+  display: flex;
+  position: relative;
+  transition: opacity 0.3s;
+}
+.ship-name {
+}
+.ship-2 .ship-part {
+  background-color: #3498db;
+  border-color: #2980b9;
+}
+.ship-1 .ship-part {
+  background-color: #2ecc71;
+  border-color: #27ae60;
+}
+.ship-2 .ship-part {
+  background-color: #e74c3c;
+  border-color: #c0392b;
+}
+.ship-3 .ship-part {
+  background-color: #f39c12;
+  border-color: #d35400;
+}
+
+.ship.horizontal {
+  flex-direction: row;
+}
+
+.ship.vertical {
+  flex-direction: column;
+}
+
+.ship-part {
+  width: 30px;
+  height: 30px;
+  background-color: #3498db;
+  border: 1px solid #2980b9;
+  box-sizing: border-box;
+  position: relative;
+  cursor: move;
+  transition: all 0.3s;
+}
