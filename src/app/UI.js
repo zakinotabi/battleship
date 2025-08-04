@@ -1,0 +1,20 @@
+import addEventsToCell from './events';
+export default function generateTable() {
+  const grid1 = document.querySelector('.grid-1');
+  const grid2 = document.querySelector('.grid-2');
+
+  function makeTable(boardNumber) {
+    const table = document.createElement('table');
+    for (let i = 0; i < 100; i++) {
+      const cell = document.createElement('td');
+      cell.dataset.index = i;
+      cell.dataset.gameboard = boardNumber;
+      addEventsToCell(cell);
+      table.appendChild(cell);
+    }
+    return table;
+  }
+
+  grid1.appendChild(makeTable(1));
+  grid2.appendChild(makeTable(2));
+}
