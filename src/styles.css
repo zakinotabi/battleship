@@ -59,15 +59,16 @@ h1 {
   flex-direction: column;
   gap: 20px;
   padding: 20px;
-  width: fit-content;
-  max-width: 400px;
-  margin-top: 20px;
+  /* width: fit-content; */
+  /* max-width: 400px; */
+  /* margin-top: 20px; */
 }
 
 .ship {
   display: flex;
   position: relative;
   transition: opacity 0.3s;
+  width: fit-content;
 }
 .ship-name {
 }

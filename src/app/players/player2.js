@@ -2,8 +2,8 @@ import attack from '../attack.js';
 import place from '../place.js';
 
 export default class Player2 {
-  constructor(name) {
-    this.name = name || 'player2';
+  constructor() {
+    this.name = 'player2';
     this.gameboard = Array(100).fill('.');
     this.op;
     this.ships = [

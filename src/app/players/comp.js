@@ -3,7 +3,7 @@ import place from '../place.js';
 
 export default class Comp {
   constructor() {
-    this.name = 'player1';
+    this.name = 'Computer';
     this.gameboard = Array(100).fill('.');
     this.op;
     this.ships = [

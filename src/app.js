@@ -1,5 +1,5 @@
 import './styles.css';
 
-import generateTable from './app/UI.js';
+import initializePlayers from './app/init/ initializePlayers';
 
-generateTable();
+initializePlayers();
