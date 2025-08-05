@@ -1,5 +1,5 @@
-import attack from '../attack.js';
-import place from '../place.js';
+import attack from '../gameAction/attack.js';
+// import placeShip from '../gameAction/place.js';
 
 export default class Player1 {
   constructor() {
@@ -14,9 +14,9 @@ export default class Player1 {
     ];
   }
 
-  place(shipId, coord) {
-    return place(this.ships[shipId], coord, this.gameboard);
-  }
+  // place(shipId, coord, direction, cell) {
+  //   return placeShip(this.ships[shipId], coord, direction, this.gameboard, cell);
+  // }
 
   attack(coord) {
     return attack(coord, this.op);

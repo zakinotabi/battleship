@@ -14,13 +14,14 @@ export default function addShips(player1, player2) {
       shipName.innerHTML = ship.name;
       shipName.className = 'ship-name';
       shipWrapper.className = `ship ship-${ship.id}`;
+      shipWrapper.setAttribute('data-ship-id', ship.id);
+      shipWrapper.setAttribute('ship-length', ship.length);
       shipWrapper.draggable = 'true';
       shipWrapper.title = ship.name;
 
       for (let i = 0; i < ship.length; i++) {
         const box = document.createElement('div');
         box.className = 'ship-part';
-        box.setAttribute('data-ship-id', ship.id);
         box.setAttribute('data-segment', i);
 
         shipWrapper.appendChild(box);

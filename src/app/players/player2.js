@@ -1,5 +1,5 @@
-import attack from '../attack.js';
-import place from '../place.js';
+import attack from '../gameAction/attack.js';
+import place from '../gameAction/place.js';
 
 export default class Player2 {
   constructor() {
