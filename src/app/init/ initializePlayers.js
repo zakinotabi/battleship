@@ -1,7 +1,7 @@
-import Player1 from '../players/player1';
-import Player2 from '../players/player2';
-import generateTable from '../UI/generateTable';
-import addShips from '../UI/addShips';
+import Player1 from '../players/player1.js';
+import Player2 from '../players/player2.js';
+import generateTable from '../UI/generateTableUI.js';
+import addShips from '../UI/addShipsUI.js';
 
 export default function initializePlayers() {
   const player1 = new Player1();

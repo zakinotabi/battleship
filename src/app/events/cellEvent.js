@@ -1,4 +1,4 @@
-import updateUi from '../UI/hitAndMissUi.js';
+import updateUi from '../UI/hitAndMissUI.js';
 import place from '../gameAction/place.js';
 
 export default function addEventsToCell(cell, player1, player2) {
@@ -32,12 +32,13 @@ export default function addEventsToCell(cell, player1, player2) {
 
     const selected = JSON.parse(e.dataTransfer.getData('shipDragged'));
     const coordinates = dropZone.getAttribute('data-index');
-
+    const ship = player1.ships[selected.shipId];
+    const direction = selected.direction;
+    const shipBoxId = selected.shipBoxId;
     if (+dropZone.dataset.gameboard === 1) {
-      const ship = player1.ships[selected.shipId];
-      place(ship, coordinates, 'h', player1.gameboard, dropZone);
+      place(ship, coordinates, shipBoxId, direction, player1.gameboard, dropZone);
     } else {
-      place(selected.shipId, coordinates, 'v', 'cellTarget');
+      place(ship, coordinates, shipBoxId, direction, player2.gameboard, dropZone);
     }
   });
 }
