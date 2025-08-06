@@ -4,31 +4,44 @@ export default function place(ship, coordinates, shipBoxId, direction, gameboard
   const board = gameboard;
   const boardUI = cell.parentElement;
 
-  const row = Math.floor((coordinates - 1) / 10 + 1);
-  const lastCellInRow = row * 10;
-  const verticalRow = (+coordinates % 10) + 1;
+  const row = Math.floor(coordinates / 10);
+  const lastCellInRow = row * 10 + 9;
+  const verticalRow = coordinates % 10;
   const lastCellInVerticalRow = verticalRow + 90;
+  const firstCellInRow = lastCellInRow - 9;
+  const firstCellInVerticalRow = verticalRow;
 
   if (direction === 'horizontal') {
-    const shipPlaceOverflow = +coordinates + ship.length;
     coordinates = +coordinates - +shipBoxId;
+    const shipPlaceOverflow = +coordinates + ship.length - 1;
+
     if (shipPlaceOverflow > lastCellInRow) {
       coordinates = coordinates - (shipPlaceOverflow - lastCellInRow);
     }
+    if (coordinates < firstCellInRow) {
+      coordinates = firstCellInRow;
+    }
+
+    placeShipsUi(coordinates, direction, ship, boardUI);
     for (let i = 0; i < ship.length; i++) {
       board[coordinates] = ship.id;
+      coordinates++;
     }
   } else if (direction === 'vertical') {
     coordinates = +coordinates - +shipBoxId * 10;
-    const shipPlaceOverflow = +coordinates + ship.length * 10 - 9;
-    console.log(shipPlaceOverflow);
+    const shipPlaceOverflow = +coordinates + (ship.length - 1) * 10;
+
     if (shipPlaceOverflow > lastCellInVerticalRow) {
       coordinates = coordinates - (shipPlaceOverflow - lastCellInVerticalRow);
     }
-    for (let i = 0; i < ship.length * 10; i += 10) {
+    if (coordinates < firstCellInVerticalRow) {
+      coordinates = firstCellInVerticalRow;
+    }
+    placeShipsUi(coordinates, direction, ship, boardUI);
+    for (let i = 0; i < ship.length; i++) {
       board[coordinates] = ship.id;
+      coordinates += 10;
     }
   }
-
-  placeShipsUi(coordinates, direction, ship, boardUI);
+  console.log(board);
 }
