@@ -11,6 +11,7 @@ export default function addShips(player1, player2) {
     const ships = player.ships;
 
     ships.forEach((ship) => {
+      // create element with function
       const shipWrapper = createElement(
         'div',
         `ship ship-${ship.id} horizontal`,
@@ -18,7 +19,9 @@ export default function addShips(player1, player2) {
         { 'data-ship-id': ship.id, 'ship-length': ship.length, draggable: true, title: ship.name },
         null
       );
+      // create element with function
       const shipNameAndRotate = createElement('div', 'ship-name', ship.name);
+      // create element with function
       const rotateBtn = createElement('button', 'rotate', '↺', null, {
         click: () => {
           shipWrapper.classList.toggle('vertical');
@@ -27,10 +30,13 @@ export default function addShips(player1, player2) {
       });
       shipNameAndRotate.appendChild(rotateBtn);
       for (let i = 0; i < ship.length; i++) {
+        // create element with function
         const box = createElement('div', 'ship-part', null, { 'data-segment': i });
+        // add event with function
         addEventsToShipBox(box);
         shipWrapper.appendChild(box);
       }
+      // add event with function
       addEventsToShips(shipWrapper);
       container.append(shipNameAndRotate, shipWrapper);
     });

@@ -28,6 +28,19 @@ h1 {
   margin-bottom: 10px;
   color: white;
 }
+.player-input {
+  color: white;
+  text-align: center;
+  width: 200px;
+  border: none;
+  background: none;
+  font-size: 1.2rem;
+  overflow: visible;
+  white-space: nowrap;
+}
+.player-input:focus {
+  outline: none;
+}
 
 .grid > table {
   display: grid;
@@ -53,8 +66,55 @@ h1 {
   box-shadow: 0 0 15px rgba(255, 107, 107, 0.7);
   z-index: 1;
 }
+.player1-container,
+.player2-container {
+  filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.start {
+  width: 10em;
+  height: 3.75em;
+  background: #942222;
+  color: white;
+  display: block;
+
+  border: 0px;
+  border-radius: 0.5em;
+  outline: none;
+  font-size: 1em;
+  font-family: 'Source Sans Pro', sans-serif;
+  box-shadow:
+    0 0.75em 0 #c03b3b,
+    0 1.25em 0 0.35em #b2b2b2;
+  text-align: center;
+  padding: 0.5em 0.5em 0.5em;
+  position: relative;
+
+  bottom: 50%;
+  left: 120px;
+  z-index: 3;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+}
+.start:hover,
+.start:focus {
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+  background: #a52424;
+  color: white;
+}
+.start:active {
+  box-shadow: 0 0 0 0.35em #b2b2b2;
+  -webkit-transform: translate(0, 1.25em);
+  transform: translate(0, 1.25em);
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+}
 
 .ship-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
