@@ -2,6 +2,7 @@ import attack from '../gameAction/attack.js';
 
 export default class Player1 {
   constructor() {
+    this.id = 1;
     this.name = 'player1';
     this.gameboard = Array(100).fill('.');
     this.op;

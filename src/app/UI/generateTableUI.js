@@ -11,7 +11,7 @@ export default function generateTable(player1, player2) {
       // cell.classList.add('drop-hover');
       cell.dataset.index = i;
       cell.dataset.gameboard = boardNumber;
-      // addEventsToCell(cell, player1, player2);
+      addEventsToCell(cell, player1, player2);
       table.appendChild(cell);
     }
     return table;

@@ -4,12 +4,13 @@ export default function placeShipsUi(coordinates, direction, ship, boardUI) {
   if (direction === 'horizontal') {
     for (let i = 0; i < ship.length; i++) {
       cellTarget.style.background = 'black';
+      cellTarget.setAttribute('data-occupied', 'true');
       cellTarget = cellTarget.nextElementSibling;
     }
   } else if (direction === 'vertical') {
     for (let i = 0; i < ship.length; i++) {
       cellTarget.style.background = 'black';
-      console.log(cellTarget);
+      cellTarget.setAttribute('data-occupied', 'true');
       coordinates += 10;
       cellTarget = boardUI.querySelector(`[data-index="${coordinates}"]`);
     }

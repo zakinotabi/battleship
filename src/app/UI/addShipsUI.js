@@ -1,5 +1,5 @@
 import addEventsToShips from '../events/shipEvent.js';
-import createElement from './utilsUI.js';
+import createElement from './createUtilsUI.js';
 import addEventsToShipBox from '../events/shipBoxesEvent.js';
 
 export default function addShips(player1, player2) {
