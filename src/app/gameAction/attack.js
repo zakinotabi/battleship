@@ -1,14 +1,16 @@
 import miss from './miss.js';
 import hit from './hit.js';
 
-export default function attack(coordinates, op) {
-  const board = op.gameboard;
-  const ships = op.ships;
+export default function attack(coordinates, player) {
+  const board = player.gameboard;
+
   if (board[coordinates] === '.') {
-    miss(coordinates, board);
+    console.log('🚀 ~ attack ~ board:', board);
+
+    miss(coordinates, player);
     return 'miss';
   } else if (!isNaN(board[coordinates])) {
-    hit(coordinates, board, ships);
+    hit(coordinates, player);
     return 'hit';
   } else {
     console.log('Position already attacked!');

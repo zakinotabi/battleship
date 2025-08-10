@@ -15,22 +15,16 @@ export default function startBtnEvent() {
   startBtn1.addEventListener('click', () => {
     shipContainerP1.style.filter = 'blur(0px)';
     playerContainer2.style.filter = 'blur(25px)';
-    // shipContainerP2.style.filter = 'blur(0px)';
     startBtn1.style.display = 'none';
     finishBtn1.style.display = 'block';
-    // startBtn2.style.display = 'none';
-
     emojiP1.style.display = 'none';
     emojiP2.style.display = 'block';
   });
   startBtn2.addEventListener('click', () => {
     shipContainerP2.style.filter = 'blur(0px)';
     playerContainer1.style.filter = 'blur(25px)';
-    // shipContainerP2.style.filter = 'blur(0px)';
     startBtn2.style.display = 'none';
     finishBtn2.style.display = 'block';
-    // startBtn1.style.display = 'none';
-
     emojiP2.style.display = 'none';
     emojiP1.style.display = 'block';
   });

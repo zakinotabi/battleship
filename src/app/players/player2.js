@@ -1,5 +1,3 @@
-import attack from '../gameAction/attack.js';
-
 export default class Player2 {
   constructor() {
     this.id = 2;
@@ -12,9 +10,5 @@ export default class Player2 {
       { id: 2, name: 'Battleship', length: 5, hit: 0, sunk: false },
       { id: 3, name: 'Patrol Boat', length: 2, hit: 0, sunk: false },
     ];
-  }
-
-  attack(coord) {
-    return attack(coord, this.op);
   }
 }

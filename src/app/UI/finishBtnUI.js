@@ -7,6 +7,7 @@ export default function updateFinishBtn(player) {
 
   if (numberOfShipsDropped.length === player.ships.length) {
     finishButton.textContent = 'Ready';
+    finishButton.style.background = 'rgb(97, 255, 181)';
     finishBtnEvent(finishButton, player);
   } else {
     finishButton.textContent = `You have ${player.ships.length - numberOfShipsDropped.length} more ships to place`;

@@ -1,58 +1,70 @@
 import updateUi from '../UI/hitAndMissUI.js';
 import place from '../gameAction/place.js';
 import updateFinishBtn from '../UI/finishBtnUI.js';
+import calculatePlace from './calculateStartPosition.js';
+import checkPlaceIfOccupied from './checkPlaceIfOccupied.js';
+import hoverEffectUi from '../UI/hoverEffectUI.js';
+import attack from '../gameAction/attack.js';
 
-export default function addEventsToCell(cell, player1, player2) {
-  if (+cell.dataset.gameboard === 1) {
+const addEventsToCell = {
+  attack(cell, player1, player2) {
     cell.addEventListener('click', () => {
-      player2.attack(cell.dataset.index);
-      updateUi(player2.op, cell);
+      const attacker = +cell.dataset.gameboard === 1 ? player2 : player1;
+      attack(cell.dataset.index, attacker);
+      updateUi(attacker, cell);
     });
-  } else {
-    cell.addEventListener('click', () => {
-      player1.attack(cell.dataset.index);
-      updateUi(player1.op, cell);
+  },
+
+  dragDrop(cell, player1, player2) {
+    let selectedShipData, ship, direction, shipBoxId, startCoord, shipElement;
+
+    cell.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      if (!e.dataTransfer.getData('shipDragged')) return;
+      selectedShipData = JSON.parse(e.dataTransfer.getData('shipDragged'));
+
+      ship = player1.ships[selectedShipData.shipId];
+      direction = selectedShipData.direction;
+      shipBoxId = selectedShipData.shipBoxId;
+      startCoord = calculatePlace(cell.dataset.index, shipBoxId, direction, ship);
+
+      const gameboard = +cell.dataset.gameboard === 1 ? player1.gameboard : player2.gameboard;
+      if (checkPlaceIfOccupied(gameboard, startCoord, direction, ship)) return;
+
+      hoverEffectUi(startCoord, direction, ship, cell);
     });
-  }
 
-  const dropZone = cell;
+    cell.addEventListener('dragleave', () => {
+      const hoverCells = cell.parentElement.querySelectorAll('.ship-place-hover');
+      hoverCells.forEach((place) => {
+        place.classList.remove('ship-place-hover');
+      });
+    });
 
-  dropZone.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    dropZone.classList.add('drop-hover');
-  });
+    cell.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const hoverCells = cell.parentElement.querySelectorAll('.ship-place-hover');
+      hoverCells.forEach((place) => {
+        place.classList.remove('ship-place-hover');
+      });
 
-  dropZone.addEventListener('dragleave', () => {
-    dropZone.classList.remove('drop-hover');
-  });
+      if (!selectedShipData) return;
 
-  dropZone.addEventListener('drop', (e) => {
-    e.preventDefault();
-    // dropZone.classList.remove('drop-hover');
-    // Prevent drop if cell is occupied
-    if (dropZone.getAttribute('data-occupied') === 'true') {
-      return;
-    }
-    const selected = JSON.parse(e.dataTransfer.getData('shipDragged'));
-    const coordinates = dropZone.getAttribute('data-index');
-    const ship = player1.ships[selected.shipId];
-    const direction = selected.direction;
-    const shipBoxId = selected.shipBoxId;
+      const gameboard = +cell.dataset.gameboard === 1 ? player1.gameboard : player2.gameboard;
+      const player = +cell.dataset.gameboard === 1 ? player1 : player2;
+      const shipContainer = document.getElementById(`ships-container${player.id}`);
+      shipElement = shipContainer.querySelector(`.ship-${selectedShipData.shipId}`);
 
-    const shipElementDOM = document.querySelector(`.ship-${selected.shipId}`);
+      if (checkPlaceIfOccupied(gameboard, startCoord, direction, ship)) return;
 
-    shipElementDOM.setAttribute('draggable', false);
-    shipElementDOM.classList.add('dropped');
-    shipElementDOM.style.opacity = '0.7';
+      place(ship, startCoord, direction, gameboard, cell);
 
-    console.log('🚀 ~ addEventsToCell ~ dropZone:', dropZone.nextElementSibling);
+      shipElement.setAttribute('draggable', 'false');
+      shipElement.classList.add('dropped');
+      shipElement.style.opacity = '0.2';
+      updateFinishBtn(player);
+    });
+  },
+};
 
-    if (+dropZone.dataset.gameboard === 1) {
-      updateFinishBtn(player1);
-      place(ship, coordinates, shipBoxId, direction, player1.gameboard, dropZone);
-    } else {
-      updateFinishBtn(player2);
-      place(ship, coordinates, shipBoxId, direction, player2.gameboard, dropZone);
-    }
-  });
-}
+export default addEventsToCell;
