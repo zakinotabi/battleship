@@ -1,4 +1,4 @@
-import finishBtnEvent from '../events/finishBtnEvent';
+import finishBtnEvent from '../events/readyBtnEvent';
 
 export default function updateFinishBtn(player) {
   const container = document.getElementById(`ships-container${player.id}`);
@@ -10,6 +10,7 @@ export default function updateFinishBtn(player) {
     finishButton.style.background = 'rgb(97, 255, 181)';
     finishBtnEvent(finishButton, player);
   } else {
+    finishBtnEvent(finishButton, player);
     finishButton.textContent = `You have ${player.ships.length - numberOfShipsDropped.length} more ships to place`;
   }
 }

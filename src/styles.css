@@ -38,6 +38,7 @@ h1 {
 }
 
 .player-input {
+  margin-bottom: 20px;
   color: white;
   text-align: center;
   width: 200px;
@@ -68,9 +69,9 @@ h1 {
   border: 1px solid rgba(182, 182, 182, 0.2);
   background: rgba(30, 30, 60, 0.7);
   transition: all 0.1s ease;
-  cursor: pointer;
 }
-.grid > table > .attacking:hover {
+.grid > .under-attack > *:hover {
+  cursor: pointer;
   background: #ff6b6b;
   transform: scale(1.1);
   box-shadow: 0 0 15px rgba(255, 107, 107, 0.7);
@@ -100,17 +101,17 @@ h1 {
 .finish .ready {
   display: none;
 }
-#ships-container1,
+/* #ships-container1,
 #ships-container2 {
   filter: blur(25px);
-}
+} */
 .start {
   width: 10em;
   height: 3.75em;
   background: #942222;
   color: white;
   display: block;
-
+  cursor: pointer;
   border: 0px;
   border-radius: 0.5em;
   outline: none;
@@ -144,8 +145,10 @@ h1 {
 
 .ship-container {
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  align-items: center;
+  filter: blur(25px);
   gap: 20px;
   padding: 20px;
   /* width: fit-content; */
@@ -161,6 +164,15 @@ h1 {
   cursor: grab;
 }
 .ship-name {
+  font-weight: bold;
+}
+.rotate {
+  width: 25px;
+  height: 25px;
+  border-radius: 20px;
+  background-color: #ffffffcd;
+  border: 0px;
+  margin-left: 10px;
 }
 .ship-2 .ship-part {
   background-color: #3498db;
@@ -188,8 +200,8 @@ h1 {
 }
 
 .ship-part {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   background-color: #3498db;
   border: 1px solid #2980b9;
   box-sizing: border-box;
@@ -197,18 +209,34 @@ h1 {
 
   transition: all 0.3s;
 }
-/* .dragging {
-  cursor: grabbing !important;
-} */
+.dragging > * {
+  width: 30px;
+  height: 30px;
+}
 .dragging {
   cursor: grabbing !important;
 }
 .dropped {
   cursor: not-allowed !important;
+  flex-direction: row !important;
+}
+.dropped > * {
+  width: 30px;
+  height: 30px;
 }
 .hit {
   background: #a52424 !important;
 }
 .miss {
   background: #021126 !important;
+}
+.game-direction {
+  opacity: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  transition: transform 0.3s;
+}
+
+.game-direction.flipped {
+  transform: rotateY(180deg);
 }

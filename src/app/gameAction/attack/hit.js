@@ -1,8 +1,9 @@
-export default function hit(coordinates, player) {
+export default function hit(cell, player) {
+  const coordinates = cell.dataset.index;
   const board = player.gameboard;
   const shipId = board[coordinates];
   const ships = player.ships;
-  // eslint-disable-next-line no-plusplus
+
   for (let i = 0; i < ships.length; i++) {
     if (ships[i].id === shipId) {
       ships[i].hit += 1;
@@ -13,4 +14,6 @@ export default function hit(coordinates, player) {
     }
   }
   board[coordinates] = 'hit';
+  console.log('🚀 ~ hit ~ board:', board);
+  cell.classList.add('hit');
 }

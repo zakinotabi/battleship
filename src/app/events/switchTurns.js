@@ -1,25 +1,14 @@
-export default function switchTurns(player) {
-  // Remove attacking class and events from deactivated board
+import { addBoardEvents, removeBoardEvents } from './boardEvent.js';
 
-  if (player.id === 1) {
-    const activeBoard = document.querySelector('.player1-container');
-    const deactivateBoard = document.querySelector('.player2-container');
-    editEvents(activeBoard, deactivateBoard);
-  } else {
-    const deactivateBoard = document.querySelector('.player1-container');
-    const activeBoard = document.querySelector('.player2-container');
-    editEvents(activeBoard, deactivateBoard);
-  }
-  function editEvents(activeBoard, deactivateBoard) {
-    const deactivatedCells = deactivateBoard.querySelectorAll('td');
-    deactivatedCells.forEach((cell) => {
-      cell.classList.remove('attacking');
-      cell.replaceWith(cell.cloneNode(true));
-    });
+export default function switchTurns(toPlayer) {
+  const activeBoard = document.querySelector(`.player${toPlayer.op.id}-container table`);
+  const inactiveBoard = document.querySelector(`.player${toPlayer.id}-container table`);
+  const gameDirection = document.querySelector(`.game-direction`);
+  gameDirection.style.opacity = '1';
+  gameDirection.classList.toggle('flipped');
+  activeBoard.classList.add('under-attack');
+  inactiveBoard.classList.remove('under-attack');
 
-    const activatedCells = activeBoard.querySelectorAll('td');
-    activatedCells.forEach((cell) => {
-      cell.classList.add('attacking');
-    });
-  }
+  removeBoardEvents(inactiveBoard);
+  addBoardEvents(activeBoard, toPlayer.op);
 }

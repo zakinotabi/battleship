@@ -1,5 +1,5 @@
 import toggleShips from '../UI/toggleShipsUI';
-import addEventsToCell from './cellEvent';
+// import boardEvent from './boardEvent';
 import switchTurns from './switchTurns';
 
 export default function finishBtnEvent(finishBtn, player) {
@@ -12,14 +12,14 @@ export default function finishBtnEvent(finishBtn, player) {
     finishBtn.classList.add('ready');
     const everyoneReady = document.querySelectorAll('.ready');
     if (everyoneReady.length === 2) {
-      activateAttack();
+      // boardEvent(player, player.op);
       playerContainer1.style.filter = 'blur(0px)';
       playerContainer2.style.filter = 'blur(0px)';
       emojiP1.style.display = 'none';
       emojiP2.style.display = 'none';
       finishBtn.style.display = 'none';
 
-      player.id === 1 ? [toggleShips(playerContainer1), switchTurns(player.op)] : [toggleShips(playerContainer2), switchTurns(player)];
+      player.id === 1 ? [toggleShips(playerContainer1), switchTurns(player)] : [toggleShips(playerContainer2), switchTurns(player.op)];
       return;
     }
 
@@ -37,19 +37,4 @@ export default function finishBtnEvent(finishBtn, player) {
       finishBtn.style.display = 'none';
     }
   });
-
-  function activateAttack() {
-    const uiBoardCellsP1 = playerContainer1.querySelectorAll('td');
-    const uiBoardCellsP2 = playerContainer2.querySelectorAll('td');
-    uiBoardCellsP1.forEach((cell) => {
-      cell.classList.add('attacking');
-      addEventsToCell.attack(cell, player, player.op);
-      // toggleShips(playerContainer1);
-    });
-    uiBoardCellsP2.forEach((cell) => {
-      cell.classList.add('attacking');
-      addEventsToCell.attack(cell, player.op, player);
-      // toggleShips(playerContainer2);
-    });
-  }
 }

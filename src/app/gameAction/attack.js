@@ -1,18 +1,17 @@
-import miss from './miss.js';
-import hit from './hit.js';
+import miss from './attack/miss.js';
+import hit from './attack/hit.js';
 
-export default function attack(coordinates, player) {
+export default function attack(cell, player) {
   const board = player.gameboard;
-
+  const coordinates = cell.dataset.index;
   if (board[coordinates] === '.') {
-    console.log('🚀 ~ attack ~ board:', board);
-
-    miss(coordinates, player);
+    miss(cell, player);
     return 'miss';
   } else if (!isNaN(board[coordinates])) {
-    hit(coordinates, player);
+    hit(cell, player);
     return 'hit';
   } else {
+    console.log('🚀 ~ attack ~ board[coordinates]:', board[coordinates]);
     console.log('Position already attacked!');
     return false;
   }

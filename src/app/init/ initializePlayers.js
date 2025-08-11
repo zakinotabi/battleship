@@ -1,7 +1,7 @@
 import Player1 from '../players/player1.js';
 import Player2 from '../players/player2.js';
 import generateTable from '../UI/generateTableUI.js';
-import addShips from '../UI/addShipsUI.js';
+import addShips from '../UI/createShipsUI.js';
 import startBtnEvent from '../events/startBtnEvent.js';
 
 export default function initializePlayers() {

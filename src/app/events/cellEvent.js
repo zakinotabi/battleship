@@ -1,20 +1,10 @@
-import updateUi from '../UI/hitAndMissUI.js';
 import place from '../gameAction/place.js';
-import updateFinishBtn from '../UI/finishBtnUI.js';
+import updateFinishBtn from '../UI/readyBtnUI.js';
 import calculatePlace from './calculateStartPosition.js';
 import checkPlaceIfOccupied from './checkPlaceIfOccupied.js';
 import hoverEffectUi from '../UI/hoverEffectUI.js';
-import attack from '../gameAction/attack.js';
 
 const addEventsToCell = {
-  attack(cell, player1, player2) {
-    cell.addEventListener('click', () => {
-      const attacker = +cell.dataset.gameboard === 1 ? player2 : player1;
-      attack(cell.dataset.index, attacker);
-      updateUi(attacker, cell);
-    });
-  },
-
   dragDrop(cell, player1, player2) {
     let selectedShipData, ship, direction, shipBoxId, startCoord, shipElement;
 

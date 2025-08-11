@@ -22,7 +22,7 @@ export default function addShips(player1, player2) {
       // create element with function
       const shipNameAndRotate = createElement('div', 'ship-name', ship.name);
       // create element with function
-      const rotateBtn = createElement('button', 'rotate', '↺', null, {
+      const rotateBtn = createElement('button', 'rotate', '↻', null, {
         click: () => {
           shipWrapper.classList.toggle('vertical');
           shipWrapper.classList.toggle('horizontal');
