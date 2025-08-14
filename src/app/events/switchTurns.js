@@ -10,5 +10,5 @@ export default function switchTurns(toPlayer) {
   inactiveBoard.classList.remove('under-attack');
 
   removeBoardEvents(inactiveBoard);
-  addBoardEvents(activeBoard, toPlayer.op);
+  addBoardEvents(activeBoard, toPlayer);
 }

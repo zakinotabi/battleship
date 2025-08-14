@@ -7,7 +7,7 @@
  * @param {Object} [events] - Event listeners (e.g., { click: () => console.log('Clicked') }).
  * @returns {HTMLElement} The created element.
  */
-export default function createElement(type, className = '', text = '', attrs = {}, events = {}) {
+export default function createUiElement(type, className = '', text = '', attrs = {}, events = {}) {
   if (!type) throw new Error('Element type is required!');
   const element = document.createElement(type);
 

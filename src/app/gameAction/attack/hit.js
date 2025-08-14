@@ -1,3 +1,5 @@
+import isSunk from '../isSunk';
+
 export default function hit(cell, player) {
   const coordinates = cell.dataset.index;
   const board = player.gameboard;
@@ -9,11 +11,12 @@ export default function hit(cell, player) {
       ships[i].hit += 1;
       if (ships[i].hit === ships[i].length) {
         ships[i].sunk = true;
+        isSunk(player);
       }
       break;
     }
   }
   board[coordinates] = 'hit';
-  console.log('🚀 ~ hit ~ board:', board);
+
   cell.classList.add('hit');
 }

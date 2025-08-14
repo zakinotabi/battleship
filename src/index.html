@@ -7,6 +7,11 @@
   </head>
   <body>
     <h1>Game</h1>
+    <div class="select-player">
+      <button class="select-player-button" id="multiplayer">Multiplayer</button>
+      <button class="select-player-button" id="computer">vs. Computer</button>
+    </div>
+
     <div class="container">
       <div class="grid-container">
         <div class="player1-container">
@@ -18,10 +23,18 @@
         </div>
         <div class="emoji-face emoji-p1">🫣</div>
       </div>
-      <div class="game-direction"><💣<</div>
+      <div class="middle-buttons">
+        <button class="restart-btn">Restart</button>
+        <div class="game-direction"><💣<</div>
+        <button class="random-btn">Random</button>
+      </div>
+
       <div class="grid-container">
         <div class="player2-container">
-          <input class="player-input player2-name" type="text" value="Player 2" />
+          <div class="comp-name-container">
+            <input class="player-input player2-name" type="text" value="Player 2" />
+          </div>
+
           <div class="grid grid-2"></div>
           <button class="finish finish-btn2">Start Placing your ships</button>
           <div class="ship-container" id="ships-container2"></div>

@@ -1,5 +1,3 @@
-import createElement from '../UI/createUtilsUI';
-
 export default function startBtnEvent() {
   const startBtn1 = document.querySelector('.start-btn1');
   const startBtn2 = document.querySelector('.start-btn2');

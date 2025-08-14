@@ -1,5 +1,5 @@
 import addEventsToShips from '../events/shipEvent.js';
-import createElement from './createUtilsUI.js';
+import createUiElement from './createUtilsUI.js';
 import addEventsToShipBox from '../events/shipBoxesEvent.js';
 
 export default function addShips(player1, player2) {
@@ -12,7 +12,7 @@ export default function addShips(player1, player2) {
 
     ships.forEach((ship) => {
       // create element with function
-      const shipWrapper = createElement(
+      const shipWrapper = createUiElement(
         'div',
         `ship ship-${ship.id} horizontal`,
         null,
@@ -20,9 +20,9 @@ export default function addShips(player1, player2) {
         null
       );
       // create element with function
-      const shipNameAndRotate = createElement('div', 'ship-name', ship.name);
+      const shipNameAndRotate = createUiElement('div', 'ship-name', ship.name);
       // create element with function
-      const rotateBtn = createElement('button', 'rotate', '↻', null, {
+      const rotateBtn = createUiElement('button', 'rotate', '↻', null, {
         click: () => {
           shipWrapper.classList.toggle('vertical');
           shipWrapper.classList.toggle('horizontal');
@@ -31,7 +31,7 @@ export default function addShips(player1, player2) {
       shipNameAndRotate.appendChild(rotateBtn);
       for (let i = 0; i < ship.length; i++) {
         // create element with function
-        const box = createElement('div', 'ship-part', null, { 'data-segment': i });
+        const box = createUiElement('div', 'ship-part', null, { 'data-segment': i });
         // add event with function
         addEventsToShipBox(box);
         shipWrapper.appendChild(box);

@@ -1,5 +1,5 @@
 export default function hoverEffectUi(coordinates, direction, ship, cell) {
-  let cellTarget = cell.parentElement.querySelector(`[data-index="${coordinates}"]`);
+  let cellTarget = cell.parentElement?.querySelector(`[data-index="${coordinates}"]`);
 
   if (direction === 'horizontal') {
     for (let i = 0; i < ship.length; i++) {

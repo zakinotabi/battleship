@@ -1,5 +1,5 @@
-import attack from '../attack.js';
-import place from '../place.js';
+import attack from '../gameAction/attack';
+import place from '../gameAction/place';
 
 export default class Comp {
   constructor() {
@@ -24,5 +24,14 @@ export default class Comp {
   attack() {
     let coord = Math.floor(Math.random() * 101);
     return attack(coord, this.op);
+  }
+  reset() {
+    this.gameboard = Array(100).fill('.');
+    this.ships = [
+      { id: 0, name: 'Destroyer', length: 3, hit: 0, sunk: false },
+      { id: 1, name: 'Submarine', length: 4, hit: 0, sunk: false },
+      { id: 2, name: 'Battleship', length: 5, hit: 0, sunk: false },
+      { id: 3, name: 'Patrol Boat', length: 2, hit: 0, sunk: false },
+    ];
   }
 }
