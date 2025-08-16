@@ -1,8 +1,12 @@
 import addEventsToShips from '../events/shipEvent.js';
 import createUiElement from './createUtilsUI.js';
 import addEventsToShipBox from '../events/shipBoxesEvent.js';
+import gameState from '../init/initializePlayers.js';
 
-export default function addShips(player1, player2) {
+export default function addShips() {
+  const player1 = gameState.players.player1;
+  const player2 = gameState.players.player2;
+  const comp = gameState.players.comp;
   const container1 = document.getElementById('ships-container1');
   const container2 = document.getElementById('ships-container2');
   console.clear();

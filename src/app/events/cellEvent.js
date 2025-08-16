@@ -3,9 +3,13 @@ import updateFinishBtn from '../UI/readyBtnUI.js';
 import calculatePlace from './calculateStartPosition.js';
 import checkPlaceIfOccupied from './checkPlaceIfOccupied.js';
 import hoverEffectUi from '../UI/hoverEffectUI.js';
+import gameState from '../init/initializePlayers.js';
 
 const addEventsToCell = {
-  dragDrop(cell, player1, player2) {
+  dragDrop(cell) {
+    const player1 = gameState.players.player1;
+    const player2 = gameState.players.player2;
+    const comp = gameState.players.comp;
     let selectedShipData, ship, direction, shipBoxId, startCoord, shipElement;
 
     cell.addEventListener('dragover', (e) => {
@@ -34,6 +38,8 @@ const addEventsToCell = {
     cell.addEventListener('drop', (e) => {
       e.preventDefault();
       const hoverCells = cell.parentElement.querySelectorAll('.ship-place-hover');
+      const boardUI = cell.parentElement;
+
       hoverCells.forEach((place) => {
         place.classList.remove('ship-place-hover');
       });
@@ -45,7 +51,7 @@ const addEventsToCell = {
       const shipContainer = document.getElementById(`ships-container${player.id}`);
       shipElement = shipContainer.querySelector(`.ship-${selectedShipData.shipId}`);
 
-      if (checkPlaceIfOccupied(gameboard, startCoord, direction, ship)) return;
+      if (checkPlaceIfOccupied(gameboard, startCoord, direction, boardUI)) return;
 
       place(ship, startCoord, direction, gameboard, cell);
 

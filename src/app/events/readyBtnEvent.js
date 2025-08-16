@@ -6,10 +6,13 @@ const finishBtnHandler = (finishBtn, player) => {
   const playerContainer2 = document.querySelector('.player2-container');
   const emojiP1 = document.querySelector('.emoji-p1');
   const emojiP2 = document.querySelector('.emoji-p2');
-
+  const randomBtn1 = document.querySelector('.random-btn-p1');
+  const randomBtn2 = document.querySelector('.random-btn-p2');
   finishBtn.classList.add('ready');
   const everyoneReady = document.querySelectorAll('.ready');
   if (everyoneReady.length === 2) {
+    randomBtn1.style.display = 'none';
+    randomBtn2.style.display = 'none';
     playerContainer1.style.filter = 'blur(0px)';
     playerContainer2.style.filter = 'blur(0px)';
     emojiP1.style.display = 'none';
@@ -21,12 +24,14 @@ const finishBtnHandler = (finishBtn, player) => {
   }
 
   if (player.id === 1) {
+    randomBtn1.style.display = 'none';
     emojiP2.style.display = 'none';
     playerContainer2.style.filter = 'blur(0px)';
     playerContainer1.style.filter = 'blur(25px)';
     toggleShips(playerContainer1);
     finishBtn.style.display = 'none';
   } else {
+    randomBtn2.style.display = 'none';
     emojiP1.style.display = 'none';
     playerContainer2.style.filter = 'blur(25px)';
     playerContainer1.style.filter = 'blur(0px)';

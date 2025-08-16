@@ -1,7 +1,13 @@
 import startBtnEvent from './startBtnEvent';
 import { removeFinishBtnEvent } from './readyBtnEvent';
+import toggleShips from '../UI/toggleShipsUI';
+import gameState from '../init/initializePlayers';
 
-export default function reset(player1, player2, comp) {
+export default function reset() {
+  const player1 = gameState.players.player1;
+  const player2 = gameState.players.player2;
+  const comp = gameState.players.comp;
+
   const resetBtn = document.querySelector('.restart-btn');
   const cells = document.querySelectorAll('td');
   const gameDirection = document.querySelector('.game-direction');
@@ -14,6 +20,12 @@ export default function reset(player1, player2, comp) {
   const emojiP2 = document.querySelector('.emoji-p2');
   const playerContainer1 = document.querySelector('.player1-container');
   const playerContainer2 = document.querySelector('.player2-container');
+  const randomBtn = document.querySelectorAll('.random-btn');
+
+  randomBtn.forEach((btn) => {
+    btn.style.display = 'none';
+  });
+
   resetBtn.addEventListener('click', () => {
     player1.reset();
     player2.reset();
@@ -44,6 +56,8 @@ export default function reset(player1, player2, comp) {
     emojiP2.style.display = 'none';
     playerContainer1.style.filter = 'blur(0px)';
     playerContainer2.style.filter = 'blur(0px)';
+    toggleShips(playerContainer1);
+    toggleShips(playerContainer2);
     startBtnEvent();
   });
 }

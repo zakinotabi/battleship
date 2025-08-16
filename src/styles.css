@@ -18,7 +18,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 40px;
   max-width: 1200px;
   width: 100%;
@@ -36,6 +36,9 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.grid-container {
+  position: relative;
 }
 
 .player-input {
@@ -88,7 +91,7 @@ h1 {
 }
 .emoji-face {
   display: none;
-  position: relative;
+  position: absolute;
   bottom: 50%;
   font-size: 9rem;
 }
@@ -253,11 +256,25 @@ h1 {
   width: 125px;
   height: 35px;
   border-radius: 20px;
-  background-color: #ffee36cd;
   border: 0px;
   margin-top: 20px;
   margin-bottom: 40px;
   cursor: pointer;
+}
+.select-player-button {
+  color: #1a2a0f;
+  background-color: #b2b2b2;
+}
+.restart-btn {
+  color: white;
+  background-color: #942222;
+}
+.random-btn {
+  color: #1a2a0f;
+  background-color: cadetblue;
+}
+.random-btn:hover {
+  background-color: rgb(77, 223, 228);
 }
 .select-player-button.selected {
   opacity: 0.5;

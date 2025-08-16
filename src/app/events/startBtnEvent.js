@@ -9,9 +9,15 @@ export default function startBtnEvent() {
   const finishBtn2 = document.querySelector('.finish-btn2');
   const emojiP1 = document.querySelector('.emoji-p1');
   const emojiP2 = document.querySelector('.emoji-p2');
+  const randomBtn1 = document.querySelector('.random-btn-p1');
+  const randomBtn2 = document.querySelector('.random-btn-p2');
+
   shipContainerP1.style.pointerEvents = 'none';
   shipContainerP2.style.pointerEvents = 'none';
+
   startBtn1.addEventListener('click', () => {
+    randomBtn1.style.display = 'block';
+
     shipContainerP1.style.pointerEvents = 'auto';
     shipContainerP1.style.filter = 'blur(0px)';
     playerContainer2.style.filter = 'blur(25px)';
@@ -21,6 +27,8 @@ export default function startBtnEvent() {
     emojiP2.style.display = 'block';
   });
   startBtn2.addEventListener('click', () => {
+    randomBtn2.style.display = 'block';
+
     shipContainerP2.style.pointerEvents = 'auto';
     shipContainerP2.style.filter = 'blur(0px)';
     playerContainer1.style.filter = 'blur(25px)';

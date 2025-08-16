@@ -1,6 +1,6 @@
 import addEventsToCell from '../events/cellEvent';
 
-export default function generateTable(player1, player2) {
+export default function generateTable() {
   const grid1 = document.querySelector('.grid-1');
   const grid2 = document.querySelector('.grid-2');
 
@@ -11,7 +11,7 @@ export default function generateTable(player1, player2) {
       // cell.classList.add('drop-hover');
       cell.dataset.index = i;
       cell.dataset.gameboard = boardNumber;
-      addEventsToCell.dragDrop(cell, player1, player2);
+      addEventsToCell.dragDrop(cell);
       table.appendChild(cell);
     }
     return table;

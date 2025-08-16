@@ -1,5 +1,5 @@
 import './styles.css';
 
-import initializePlayers from './app/init/ initializePlayers';
+import gameState from './app/init/initializePlayers';
 
-initializePlayers();
+gameState.initialize();
