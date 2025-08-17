@@ -1,8 +1,18 @@
 import { addBoardEvents, removeBoardEvents } from './boardEvent.js';
+import computerPlay from './computerGameplay.js';
 
 export default function switchTurns(toPlayer) {
-  const activeBoard = document.querySelector(`.player${toPlayer.op.id}-container table`);
-  const inactiveBoard = document.querySelector(`.player${toPlayer.id}-container table`);
+  let activeBoard;
+  let inactiveBoard;
+
+  if (toPlayer.id === 1) {
+    activeBoard = document.querySelector(`.player2-container table`);
+    inactiveBoard = document.querySelector(`.player1-container table`);
+  } else {
+    activeBoard = document.querySelector(`.player1-container table`);
+    inactiveBoard = document.querySelector(`.player2-container table`);
+  }
+
   const gameDirection = document.querySelector(`.game-direction`);
   gameDirection.style.opacity = '1';
   gameDirection.classList.toggle('flipped');
@@ -11,4 +21,7 @@ export default function switchTurns(toPlayer) {
 
   removeBoardEvents(inactiveBoard);
   addBoardEvents(activeBoard, toPlayer);
+  if (toPlayer.id === 3) {
+    computerPlay();
+  }
 }

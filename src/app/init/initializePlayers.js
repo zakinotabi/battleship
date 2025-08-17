@@ -6,6 +6,7 @@ import addShips from '../UI/createShipsUI.js';
 import startBtnEvent from '../events/startBtnEvent.js';
 import reset from '../events/resetEvent.js';
 import randomBtnEvent from '../events/randomEvent.js';
+import compBtnEvent from '../events/computerBtnEvent.js';
 
 const gameState = {
   players: null,
@@ -27,6 +28,7 @@ const gameState = {
     startBtnEvent();
     reset();
     randomBtnEvent();
+    compBtnEvent();
   },
 };
 

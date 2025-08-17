@@ -1,8 +1,6 @@
-import attack from '../gameAction/attack';
-import place from '../gameAction/place';
-
 export default class Comp {
   constructor() {
+    this.id = 3;
     this.name = 'Computer';
     this.gameboard = Array(100).fill('.');
     this.op;
@@ -14,17 +12,6 @@ export default class Comp {
     ];
   }
 
-  place() {
-    for (let i = 0; i < this.ships.length; i++) {
-      let coord = Math.floor(Math.random() * 101);
-      return place(this.ships[i], coord, this.gameboard);
-    }
-  }
-
-  attack() {
-    let coord = Math.floor(Math.random() * 101);
-    return attack(coord, this.op);
-  }
   reset() {
     this.gameboard = Array(100).fill('.');
     this.ships = [

@@ -53,7 +53,7 @@ const addEventsToCell = {
 
       if (checkPlaceIfOccupied(gameboard, startCoord, direction, boardUI)) return;
 
-      place(ship, startCoord, direction, gameboard, cell);
+      place(player, ship, startCoord, direction, cell);
 
       shipElement.setAttribute('draggable', 'false');
       shipElement.classList.add('dropped');

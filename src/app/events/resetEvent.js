@@ -1,7 +1,8 @@
 import startBtnEvent from './startBtnEvent';
 import { removeFinishBtnEvent } from './readyBtnEvent';
-import toggleShips from '../UI/toggleShipsUI';
+import hideShipsFromTable from '../UI/hideShipsFromTableUI';
 import gameState from '../init/initializePlayers';
+import { removeBoardEvents } from './boardEvent';
 
 export default function reset() {
   const player1 = gameState.players.player1;
@@ -9,7 +10,7 @@ export default function reset() {
   const comp = gameState.players.comp;
 
   const resetBtn = document.querySelector('.restart-btn');
-  const cells = document.querySelectorAll('td');
+
   const gameDirection = document.querySelector('.game-direction');
   const ships = document.querySelectorAll('.ship');
   const finishBtn = document.querySelectorAll('.finish');
@@ -20,6 +21,7 @@ export default function reset() {
   const emojiP2 = document.querySelector('.emoji-p2');
   const playerContainer1 = document.querySelector('.player1-container');
   const playerContainer2 = document.querySelector('.player2-container');
+  const boards = document.querySelectorAll('table');
   const randomBtn = document.querySelectorAll('.random-btn');
 
   randomBtn.forEach((btn) => {
@@ -30,9 +32,8 @@ export default function reset() {
     player1.reset();
     player2.reset();
     comp.reset();
-    cells.forEach((cell) => {
-      cell.classList.remove('ship-place', 'hit', 'miss');
-    });
+    hideShipsFromTable(playerContainer1);
+    hideShipsFromTable(playerContainer2);
     ships.forEach((ship) => {
       ship.classList.remove('dropped');
       ship.draggable = 'true';
@@ -56,8 +57,10 @@ export default function reset() {
     emojiP2.style.display = 'none';
     playerContainer1.style.filter = 'blur(0px)';
     playerContainer2.style.filter = 'blur(0px)';
-    toggleShips(playerContainer1);
-    toggleShips(playerContainer2);
     startBtnEvent();
+    boards.forEach((board) => {
+      removeBoardEvents(board);
+      board.classList.remove('under-attack');
+    });
   });
 }

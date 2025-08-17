@@ -1,10 +1,8 @@
-export default function placeShipsUi(coordinates, direction, ship, boardUI) {
+export default function placeShipsUi(coordinates, direction, ship, cell) {
   for (let i = 0; i < ship.length; i++) {
-    let cellTarget = boardUI.parentElement.querySelector(`[data-index="${coordinates}"]`);
-    //check that later i added parentElement it was working just fine without it
-    // console.log('🚀 ~ placeShipsUi ~ boardUI:', boardUI);
+    let cellTarget = cell.parentElement.querySelector(`[data-index="${coordinates}"]`);
 
-    cellTarget.classList.add('ship-place');
+    cellTarget.classList.add('ship-default-color', `ship-place-${ship.id}`);
 
     if (direction === 'horizontal') {
       coordinates++;

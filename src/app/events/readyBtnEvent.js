@@ -1,4 +1,4 @@
-import toggleShips from '../UI/toggleShipsUI';
+import hideShipsFromTable from '../UI/hideShipsFromTableUI';
 import switchTurns from './switchTurns';
 
 const finishBtnHandler = (finishBtn, player) => {
@@ -19,7 +19,7 @@ const finishBtnHandler = (finishBtn, player) => {
     emojiP2.style.display = 'none';
     finishBtn.style.display = 'none';
 
-    player.id === 1 ? [toggleShips(playerContainer1), switchTurns(player)] : [toggleShips(playerContainer2), switchTurns(player.op)];
+    player.id === 1 ? [hideShipsFromTable(playerContainer1), switchTurns(player)] : [hideShipsFromTable(playerContainer2), switchTurns(player.op)];
     return;
   }
 
@@ -28,14 +28,14 @@ const finishBtnHandler = (finishBtn, player) => {
     emojiP2.style.display = 'none';
     playerContainer2.style.filter = 'blur(0px)';
     playerContainer1.style.filter = 'blur(25px)';
-    toggleShips(playerContainer1);
+    hideShipsFromTable(playerContainer1);
     finishBtn.style.display = 'none';
   } else {
     randomBtn2.style.display = 'none';
     emojiP1.style.display = 'none';
     playerContainer2.style.filter = 'blur(25px)';
     playerContainer1.style.filter = 'blur(0px)';
-    toggleShips(playerContainer2);
+    hideShipsFromTable(playerContainer2);
     finishBtn.style.display = 'none';
   }
 };

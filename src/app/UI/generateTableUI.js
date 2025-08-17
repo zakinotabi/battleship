@@ -8,7 +8,7 @@ export default function generateTable() {
     const table = document.createElement('table');
     for (let i = 0; i < 100; i++) {
       const cell = document.createElement('td');
-      // cell.classList.add('drop-hover');
+      cell.classList.add('cell');
       cell.dataset.index = i;
       cell.dataset.gameboard = boardNumber;
       addEventsToCell.dragDrop(cell);

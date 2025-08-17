@@ -81,10 +81,22 @@ h1 {
   box-shadow: 0 0 15px rgba(255, 107, 107, 0.7);
   z-index: 1;
 }
-
-.ship-place {
+.ship-default-color {
   background: rgba(64, 218, 245, 0.7) !important;
 }
+.ship-place-0 {
+  background-color: #3498db !important;
+}
+.ship-place-1 {
+  background-color: #2ecc71 !important;
+}
+.ship-place-2 {
+  background-color: #e74c3c !important;
+}
+.ship-place-3 {
+  background-color: #f39c12 !important;
+}
+
 .ship-place-hover {
   background: rgb(97, 255, 181) !important;
   box-shadow: 0 0 15px rgba(97, 255, 181, 0.7);

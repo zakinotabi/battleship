@@ -1,5 +1,5 @@
 import place from '../gameAction/place';
-import toggleShips from '../UI/toggleShipsUI';
+import hideShipsFromTable from '../UI/hideShipsFromTableUI';
 import calculatePlace from './calculateStartPosition';
 import checkPlaceIfOccupied from './checkPlaceIfOccupied';
 import gameState from '../init/initializePlayers';
@@ -21,8 +21,9 @@ export default function randomBtnEvent() {
   const shipsP2 = playerContainer2.querySelectorAll('.ship');
 
   randomBtn1.addEventListener('click', () => {
+    //reset board and damage
     player1.reset();
-    toggleShips(activeBoard1);
+    hideShipsFromTable(activeBoard1);
     for (let i = 0; i < player1.ships.length; i++) {
       tryPlaceShip(player1, i, activeBoard1);
     }
@@ -35,8 +36,9 @@ export default function randomBtnEvent() {
   });
 
   randomBtn2.addEventListener('click', () => {
+    //reset board and damage
     player2.reset();
-    toggleShips(activeBoard2);
+    hideShipsFromTable(activeBoard2);
     for (let i = 0; i < player2.ships.length; i++) {
       tryPlaceShip(player2, i, activeBoard2);
     }
@@ -49,7 +51,7 @@ export default function randomBtnEvent() {
   });
 }
 
-const tryPlaceShip = (player, shipIndex, activeBoard, attempts = 0) => {
+export const tryPlaceShip = (player, shipIndex, activeBoard, attempts = 0) => {
   const maxAttempts = 100;
 
   if (attempts >= maxAttempts) {
@@ -64,7 +66,7 @@ const tryPlaceShip = (player, shipIndex, activeBoard, attempts = 0) => {
   const startCoord = calculatePlace(coord, 0, direction, ship);
 
   if (!checkPlaceIfOccupied(player.gameboard, startCoord, direction, ship)) {
-    place(ship, startCoord, direction, player.gameboard, activeBoard);
+    place(player, ship, startCoord, direction, activeBoard);
   } else {
     tryPlaceShip(player, shipIndex, activeBoard, attempts + 1);
   }

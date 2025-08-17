@@ -2,6 +2,7 @@ import finishBtnEvent from '../events/readyBtnEvent';
 
 export default function updateFinishBtn(player) {
   const container = document.getElementById(`ships-container${player.id}`);
+
   const numberOfShipsDropped = container.querySelectorAll('.dropped');
 
   const finishButton = document.querySelector(`.finish-btn${player.id}`);
