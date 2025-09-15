@@ -1,68 +1,117 @@
 import attack from '../gameAction/attack';
 import gameState from '../init/initializePlayers';
-let lastHit;
-let skipCounter;
 
-export default function computerPlay(coord) {
+let hit = null;
+let firstHitCoords = null;
+let hitCounter = 0;
+let missCounter = 0;
+let counter = 0;
+const positions = [1, -1, 10, -10];
+let availableSpots = [...Array(100).keys()];
+
+export default function computerPlay() {
   const comp = gameState.players.comp;
-  const attackCoord = coord ?? Math.floor(Math.random() * 100);
   const activeBoard = document.querySelector(`.player1-container table`);
-  const cell = activeBoard.querySelector(`[data-index="${attackCoord}"]`);
 
-  //   if (!cell) return;
-  if (lastHit) {
-    if (attackCoord === lastHit + 1) {
-      return play(attackCoord + 1);
-      // return computerPlay(attackCoord + 1);
-    }
-    if (attackCoord === lastHit - 1) {
-      return play(attackCoord - 1);
-      // return computerPlay(attackCoord - 1);
-    }
-    if (attackCoord === lastHit + 10) {
-      return play(attackCoord + 10);
-      // return computerPlay(attackCoord + 10);
-    }
-    if (attackCoord === lastHit - 10) {
-      return play(attackCoord - 10);
-      // return computerPlay(attackCoord - 10);
-    }
-  } else {
-    skipCounter = 0;
-    play(attackCoord);
+  if (missCounter > 3) {
+    counter = 0;
+    hit = null;
+    firstHitCoords = null;
+    hitCounter = 0; // Reset hitCounter here too for consistency
   }
 
-  function play(coords) {
-    if (!isNaN(comp.op.gameboard[coords])) {
-      lastHit = coords;
-      // if (skipCounter === 0) {
-      //   skipCounter += 1;
-      //   return computerPlay(coords + 1);
+  setTimeout(() => {
+    if (hit) {
+      let newCoords = hit + positions[counter];
+
+      // Skip invalid coords (boundary/edge cross)
+      if ((hit % 10 === 9 && positions[counter] === 1) || (hit % 10 === 0 && positions[counter] === -1) || newCoords > 99 || newCoords < 0) {
+        counter++;
+        missCounter++;
+        computerPlay();
+        return;
+      }
+
+      // Skip if already attacked (prevent bad splice and unnecessary attack)
+      if (!availableSpots.includes(newCoords)) {
+        missCounter++;
+        counter++;
+        computerPlay();
+        return;
+      }
+
+      const cell = activeBoard.querySelector(`[data-index="${newCoords}"]`);
+      const result = attack(cell, comp.op);
+
+      //Only splice on valid hit/miss
+      if (result === 'hit' || result === 'miss') {
+        availableSpots.splice(availableSpots.indexOf(newCoords), 1);
+      }
+
+      if (result === 'miss' && hitCounter === 0) {
+        missCounter++;
+        counter++;
+      } else if (result === 'miss' && hitCounter !== 0) {
+        missCounter++;
+        hit = firstHitCoords;
+        if (counter === 0 || counter === 2) {
+          counter++;
+        } else {
+          counter--;
+        }
+      } else if (result === 'hit') {
+        hit = newCoords;
+        hitCounter++;
+        computerPlay();
+      }
+      // else if (result === 'sunk') {
+      //   // Handle if attack returns 'sunk' (reset hunt, recurse if variant allows another turn)
+      //   hit = null;
+      //   firstHitCoords = null;
+      //   hitCounter = 0;
+      //   missCounter = 0;
+      //   counter = 0;
+      //   computerPlay();
       // }
-      // if (skipCounter === 1) {
-      //   skipCounter += 1;
-      //   return computerPlay(coords - 1);
-      // }
-      // if (skipCounter === 2) {
-      //   skipCounter += 1;
-      //   return computerPlay(coords + 10);
-      // }
-      // if (skipCounter === 3) {
-      //   skipCounter += 1;
-      //   return computerPlay(attackCoord - 10);
-      // }
-      setTimeout(() => {
-        attack(cell, comp.op);
-        coords === 99 ? (coords -= 1) : coords;
-        computerPlay(coords + 1);
-      }, 500);
-    } else if (comp.op.gameboard[coords] === 'hit' || comp.op.gameboard[coords] === 'miss') {
-      computerPlay();
-    } else if (comp.op.gameboard[coords] === '.') {
-      setTimeout(() => {
-        attack(cell, comp.op);
-      }, 500);
-      // attack(cell, comp.op);
+      else if (!result) {
+        missCounter++;
+        counter++;
+        computerPlay();
+      }
+    } else {
+      missCounter = 0;
+
+      //Handle empty spots (game should end externally, but prevent crash)
+      if (availableSpots.length === 0) {
+        return;
+      }
+
+      const randomIndex = Math.floor(Math.random() * availableSpots.length);
+      const attackCoord = availableSpots[randomIndex];
+      const cell = activeBoard.querySelector(`[data-index="${attackCoord}"]`);
+      const result = attack(cell, comp.op);
+
+      // Only splice on valid hit/miss
+      if (result === 'hit' || result === 'miss') {
+        availableSpots.splice(randomIndex, 1);
+      }
+
+      if (result === 'hit') {
+        hit = attackCoord;
+        firstHitCoords = attackCoord;
+        hitCounter = 0; // Reset hitCounter for new hunt
+        computerPlay();
+      } else if (result === 'sunk') {
+        // Rare for random, but handle
+        hit = null;
+        firstHitCoords = null;
+        hitCounter = 0;
+        missCounter = 0;
+        counter = 0;
+        computerPlay();
+      } else if (!result) {
+        computerPlay();
+      }
     }
-  }
+  }, 500);
 }

@@ -20,8 +20,10 @@ export default function switchTurns(toPlayer) {
   inactiveBoard.classList.remove('under-attack');
 
   removeBoardEvents(inactiveBoard);
-  addBoardEvents(activeBoard, toPlayer);
-  if (toPlayer.id === 3) {
+
+  if (toPlayer.id == 3) {
     computerPlay();
+  } else {
+    addBoardEvents(activeBoard, toPlayer);
   }
 }

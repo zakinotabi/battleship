@@ -7,6 +7,7 @@ import startBtnEvent from '../events/startBtnEvent.js';
 import reset from '../events/resetEvent.js';
 import randomBtnEvent from '../events/randomEvent.js';
 import compBtnEvent from '../events/computerBtnEvent.js';
+import multiplayerBtnEvent from '../events/multiplayerBtnEvent.js';
 
 const gameState = {
   players: null,
@@ -29,6 +30,7 @@ const gameState = {
     reset();
     randomBtnEvent();
     compBtnEvent();
+    multiplayerBtnEvent();
   },
 };
 

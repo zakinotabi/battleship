@@ -13,8 +13,7 @@ function updateUi(startCoord, direction, ship, cell) {
 
 export default function place(player, ship, startCoord, direction, cell) {
   const board = player.gameboard;
-  console.log('🚀 ~ place ~ player.id:', player.id);
-  if (player.id === 3) {
+  if (player.id == 3) {
     updateBoard(board, startCoord, direction, ship);
   } else {
     updateBoard(board, startCoord, direction, ship);

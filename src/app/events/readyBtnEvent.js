@@ -10,6 +10,7 @@ const finishBtnHandler = (finishBtn, player) => {
   const randomBtn2 = document.querySelector('.random-btn-p2');
   finishBtn.classList.add('ready');
   const everyoneReady = document.querySelectorAll('.ready');
+
   if (everyoneReady.length === 2) {
     randomBtn1.style.display = 'none';
     randomBtn2.style.display = 'none';

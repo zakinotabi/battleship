@@ -6,10 +6,9 @@ import gameState from '../init/initializePlayers.js';
 export default function addShips() {
   const player1 = gameState.players.player1;
   const player2 = gameState.players.player2;
-  const comp = gameState.players.comp;
+
   const container1 = document.getElementById('ships-container1');
   const container2 = document.getElementById('ships-container2');
-  console.clear();
 
   function generateShipsForPlayer(player, container) {
     const ships = player.ships;

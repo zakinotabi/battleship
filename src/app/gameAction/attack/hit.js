@@ -5,17 +5,18 @@ export default function hit(cell, player) {
   const board = player.gameboard;
   const shipId = board[coordinates];
   const ships = player.ships;
+  const targetShip = ships[shipId];
 
-  for (let i = 0; i < ships.length; i++) {
-    if (ships[i].id === shipId) {
-      ships[i].hit += 1;
-      if (ships[i].hit === ships[i].length) {
-        ships[i].sunk = true;
-        isSunk(player);
-      }
-      break;
+  if (targetShip.id === shipId) {
+    targetShip.hit += 1;
+    if (targetShip.hit === targetShip.length) {
+      targetShip.sunk = true;
+      isSunk(player);
     }
+  } else {
+    console.error('ship Id do not match targeted ship');
   }
+
   board[coordinates] = 'hit';
 
   cell.classList.add('hit');

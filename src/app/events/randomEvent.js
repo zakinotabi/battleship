@@ -55,7 +55,6 @@ export const tryPlaceShip = (player, shipIndex, activeBoard, attempts = 0) => {
   const maxAttempts = 100;
 
   if (attempts >= maxAttempts) {
-    console.error(`Failed to place ship after ${maxAttempts} attempts`);
     return;
   }
 

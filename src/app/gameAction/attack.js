@@ -12,7 +12,6 @@ export default function attack(cell, opp) {
     hit(cell, opp);
     return 'hit';
   } else {
-    console.log('Position already attacked!');
     return false;
   }
 }
