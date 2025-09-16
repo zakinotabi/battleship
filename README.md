@@ -2,6 +2,10 @@
 
 A modern, interactive implementation of the classic Battleship board game built with JavaScript, HTML, and CSS. This web-based version features both single-player against AI and two-player modes with intuitive drag-and-drop ship placement.
 
+## Play
+
+[live preview](https://zakinotabi.github.io/battleship/)
+
 ## Screenshot
 
 <div align="center">
@@ -42,7 +46,3 @@ The computer opponent uses an intelligent hunting algorithm that:
 - Switches to targeted search after first hit (search around)
 - Follows pattern-based probing around successful hits until there is a miss in both ends
 - Efficiently tracks it's play to know when to stop and start random attacks again
-
-## Installation
-
-[live preview](https://zakinotabi.github.io/battleship/)
