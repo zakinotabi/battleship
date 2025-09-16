@@ -1,7 +1,7 @@
 export default class Player2 {
   constructor() {
     this.id = 2;
-    this.name = 'player 2';
+    this.name = 'Player 2';
     this.gameboard = Array(100).fill('.');
     this.op;
     this.ships = [

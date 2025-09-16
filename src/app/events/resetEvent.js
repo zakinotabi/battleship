@@ -9,7 +9,6 @@ export default function reset() {
   const player2 = gameState.players.player2;
   const comp = gameState.players.comp;
 
-  const resetBtn = document.querySelector('.restart-btn');
   const gameDirection = document.querySelector('.game-direction');
   const ships = document.querySelectorAll('.ship');
   const finishBtn = document.querySelectorAll('.finish');
@@ -29,45 +28,48 @@ export default function reset() {
     btn.style.display = 'none';
   });
 
-  resetBtn.addEventListener('click', () => {
-    player1.reset();
-    player2.reset();
-    comp.reset();
-    hideShipsFromTable(playerContainer1);
-    hideShipsFromTable(playerContainer2);
-    ships.forEach((ship) => {
-      ship.classList.remove('dropped');
-      ship.draggable = 'true';
-      ship.style.opacity = '1';
-    });
-    finishBtn.forEach((finish) => {
-      finish.style.display = 'none';
-      finish.textContent = 'Start Placing your ships';
-      finish.classList.remove('ready');
-      finish.style.background = 'white';
-      removeFinishBtnEvent(finish);
-    });
-
-    startBtn1.style.display = 'block';
-
-    if (player1.op == player2) {
-      startBtn2.style.display = 'block';
-    } else {
-      playerContainer2.querySelector('.finish').classList.add('ready');
-    }
-
-    gameDirection.style.opacity = '0';
-    gameDirection.classList.remove('flipped');
-    shipContainerP1.style.filter = 'blur(25px)';
-    shipContainerP2.style.filter = 'blur(25px)';
-    emojiP1.style.display = 'none';
-    emojiP2.style.display = 'none';
-    playerContainer1.style.filter = 'blur(0px)';
-    playerContainer2.style.filter = 'blur(0px)';
-    startBtnEvent();
-    boards.forEach((board) => {
-      removeBoardEvents(board);
-      board.classList.remove('under-attack');
-    });
+  player1.reset();
+  player2.reset();
+  comp.reset();
+  hideShipsFromTable(playerContainer1);
+  hideShipsFromTable(playerContainer2);
+  ships.forEach((ship) => {
+    ship.classList.remove('dropped');
+    ship.draggable = 'true';
+    ship.style.opacity = '1';
   });
+  finishBtn.forEach((finish) => {
+    finish.style.display = 'none';
+    finish.textContent = 'Start Placing your ships';
+    finish.classList.remove('ready');
+    finish.style.background = 'white';
+    removeFinishBtnEvent(finish);
+  });
+
+  startBtn1.style.display = 'block';
+
+  if (player1.op == player2) {
+    startBtn2.style.display = 'block';
+  } else {
+    playerContainer2.querySelector('.finish').classList.add('ready');
+  }
+
+  gameDirection.style.opacity = '0';
+  gameDirection.classList.remove('flipped');
+  shipContainerP1.style.filter = 'blur(25px)';
+  shipContainerP2.style.filter = 'blur(25px)';
+  emojiP1.style.display = 'none';
+  emojiP2.style.display = 'none';
+  playerContainer1.style.filter = 'blur(0px)';
+  playerContainer2.style.filter = 'blur(0px)';
+  startBtnEvent();
+  boards.forEach((board) => {
+    removeBoardEvents(board);
+    board.classList.remove('under-attack');
+  });
+}
+
+export function restartBtn() {
+  const resetBtn = document.querySelector('.restart-btn');
+  resetBtn.addEventListener('click', reset);
 }

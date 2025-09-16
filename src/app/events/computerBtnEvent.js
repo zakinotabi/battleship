@@ -1,5 +1,6 @@
 import gameState from '../init/initializePlayers';
 import { tryPlaceShip } from './randomEvent';
+import reset from './resetEvent';
 const compBtn = document.getElementById('computer');
 
 export default function compBtnEvent() {
@@ -12,10 +13,13 @@ export default function compBtnEvent() {
   const playerName = document.querySelector(`.player2-name`);
   const finishBtn = playerContainer2.querySelector('.finish-btn2');
   const emojiP2 = document.querySelector('.emoji-p2');
+  const multiplayerBtn = document.getElementById('multiplayer');
 
   compBtn.addEventListener('click', () => {
+    reset();
     compBtn.classList.add('selected-mode');
-    document.getElementById('multiplayer').classList.remove('selected-mode');
+    multiplayerBtn.classList.remove('selected-mode');
+    multiplayerBtn.style.pointerEvents = 'auto';
     player1.op = comp;
     comp.op = player1;
     startBtn2.style.display = 'none';
@@ -26,5 +30,6 @@ export default function compBtnEvent() {
     for (let i = 0; i < comp.ships.length; i++) {
       tryPlaceShip(comp, i, activeBoard2);
     }
+    compBtn.style.pointerEvents = 'none';
   });
 }

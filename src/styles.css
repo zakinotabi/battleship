@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(to bottom, #1a2a0f, #2a3b1f);
+  background: linear-gradient(to bottom, #1a2a0f, #253d16);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -27,7 +27,8 @@ body {
 h1 {
   font-size: 3.5rem;
   margin-bottom: 10px;
-  color: white;
+  color: #eaeaea;
+  letter-spacing: 5px;
 }
 
 .grid-container,
@@ -282,6 +283,7 @@ h1 {
   background-color: #942222;
 }
 .random-btn {
+  display: none;
   color: #1a2a0f;
   background-color: cadetblue;
 }

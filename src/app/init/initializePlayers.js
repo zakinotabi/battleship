@@ -4,7 +4,7 @@ import Comp from '../players/comp.js';
 import generateTable from '../UI/generateTableUI.js';
 import addShips from '../UI/createShipsUI.js';
 import startBtnEvent from '../events/startBtnEvent.js';
-import reset from '../events/resetEvent.js';
+import { restartBtn } from '../events/resetEvent.js';
 import randomBtnEvent from '../events/randomEvent.js';
 import compBtnEvent from '../events/computerBtnEvent.js';
 import multiplayerBtnEvent from '../events/multiplayerBtnEvent.js';
@@ -27,7 +27,7 @@ const gameState = {
     generateTable();
     addShips();
     startBtnEvent();
-    reset();
+    restartBtn();
     randomBtnEvent();
     compBtnEvent();
     multiplayerBtnEvent();
